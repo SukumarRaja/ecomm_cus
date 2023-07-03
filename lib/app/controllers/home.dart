@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import '../utility/dimensions.dart';
+
 class HomeController extends GetxController {
   static HomeController get to => Get.put(HomeController());
   PageController pageController = PageController(viewportFraction: 0.85);
@@ -21,13 +23,14 @@ class HomeController extends GetxController {
     _scaleFactor.value = value;
   }
 
-  final _height = 220.obs;
+  final _height = Dimensions.sliderContainer.obs;
 
   get height => _height.value;
 
   set height(value) {
     _height.value = value;
   }
+
   final _imageIndicator = 0.obs;
 
   get imageIndicator => _imageIndicator.value;
@@ -66,11 +69,10 @@ class HomeController extends GetxController {
       matrix = Matrix4.diagonal3Values(1, currScale.toDouble(), 1);
       matrix = Matrix4.diagonal3Values(1, currScale.toDouble(), 1)
         ..setTranslationRaw(0, currTrans, 0);
-    }else{
+    } else {
       var currScale = 0.8;
       matrix = Matrix4.diagonal3Values(1, currScale.toDouble(), 1)
-        ..setTranslationRaw(0, height*(1-scaleFactor)/2, 0);
-
+        ..setTranslationRaw(0, height * (1 - scaleFactor) / 2, 0);
     }
     return matrix;
   }

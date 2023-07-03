@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../utility/dimensions.dart';
 import '../../themes/colors.dart';
 
 class BigText extends StatelessWidget {
   const BigText(
       {Key? key,
       required this.text,
-      this.fontSize = 20,
+      this.fontSize = 0,
       this.overflow = TextOverflow.ellipsis,
       this.color = AppColors.black,
       this.fontWeight = FontWeight.w400})
@@ -26,7 +27,7 @@ class BigText extends StatelessWidget {
           color: color,
           fontFamily: 'roboto',
           fontWeight: fontWeight,
-          fontSize: fontSize),
+          fontSize: fontSize == 0 ? Dimensions.font20 : fontSize),
     );
   }
 }
