@@ -1,8 +1,8 @@
 import 'package:ecomm_cus/app/config/config.dart';
-import 'package:ecomm_cus/app/ui/pages/food/popular_food_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/home.dart';
+import '../../../routes/routes.dart';
 import '../../../utility/dimensions.dart';
 import '../../themes/colors.dart';
 import '../common/text.dart';
@@ -18,7 +18,8 @@ class SliderWidget extends StatelessWidget {
       height: Dimensions.sliderMainContainer,
       // color: Colors.red,
       child: PageView.builder(
-          itemCount: items.length,
+          // itemCount: items.length,
+          itemCount: 3,
           controller: HomeController.to.pageController,
           onPageChanged: (index) {
             HomeController.to.imageIndicator = index;
@@ -28,7 +29,7 @@ class SliderWidget extends StatelessWidget {
                   transform: HomeController.to.transform(index: position),
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(() => const PopularFoodDetails());
+                      Get.toNamed(AppRoutes.getPopularFood(pageID: position));
                     },
                     child: Stack(
                       children: [
@@ -44,9 +45,17 @@ class SliderWidget extends StatelessWidget {
                                   ? AppColors.primary
                                   : const Color(0xFF9294cc),
                               image: DecorationImage(
-                                  fit: BoxFit.cover, image: NetworkImage(
-                                      // '${AppConfig.baseUrl}/uploads/${items[position]['photo']}'
-                                      '${AppConfig.imageUrl}/${items[position]['photo']}'))),
+                                  fit: BoxFit.cover,
+                                  image: AssetImage('assets/images/food.jpg')
+
+                                  // NetworkImage(
+                                  //         // '${AppConfig.baseUrl}/uploads/${items[position]['photo']}'
+                                  //         '${AppConfig.imageUrl}/${items[position]['photo']}'
+                                  //
+                                  //
+                                  // )
+
+                                  )),
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,
@@ -80,7 +89,8 @@ class SliderWidget extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  BigText(text: "${items[position]['name']}"),
+                                  // BigText(text: "${items[position]['name']}"),
+                                  BigText(text: "Name"),
                                   SizedBox(
                                     height: Dimensions.height10,
                                   ),

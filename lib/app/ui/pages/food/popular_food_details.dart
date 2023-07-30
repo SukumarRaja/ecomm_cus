@@ -1,3 +1,4 @@
+import 'package:ecomm_cus/app/controllers/popular_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utility/dimensions.dart';
@@ -8,10 +9,16 @@ import '../../widgets/food/popular/icon.dart';
 import '../../widgets/icon_and_text.dart';
 
 class PopularFoodDetails extends StatelessWidget {
-  const PopularFoodDetails({super.key});
+  const PopularFoodDetails({super.key, required this.pageId});
+
+  final int pageId;
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    print("page id ${pageId.toString()}");
+    print("product name is ${product['name']}");
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Stack(

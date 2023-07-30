@@ -1,8 +1,8 @@
-import 'package:ecomm_cus/app/ui/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/home.dart';
 import '../../../controllers/popular_product.dart';
+import '../../../controllers/recommended_product.dart';
 import '../../../utility/dimensions.dart';
 import '../../widgets/home/dot_indicator.dart';
 import '../../widgets/home/food_list.dart';
@@ -32,13 +32,17 @@ class HomeMain extends StatelessWidget {
 
                 //slider
                 GetBuilder<PopularProductController>(builder: (controller) {
-                  return controller.isLoaded
-                      ? SliderWidget(
-                          items: controller.popularProductList,
-                        )
-                      : const CircularProgressIndicator(
-                          color: AppColors.primary,
-                        );
+                  // return controller.isLoaded
+                  //     ? SliderWidget(
+                  //         items: controller.popularProductList,
+                  //       )
+                  //     : const CircularProgressIndicator(
+                  //         color: AppColors.primary,
+                  //       );
+
+                  return SliderWidget(
+                    items: controller.popularProductList,
+                  );
                 }),
 
                 //dot indicator
@@ -56,7 +60,18 @@ class HomeMain extends StatelessWidget {
                 const RecommendedText(),
 
                 //Recommended list
-                const RecommendedFoodList()
+                GetBuilder<RecommendedProductController>(builder: (controller) {
+                  // return controller.isLoaded
+                  //     ? RecommendedFoodList(
+                  //         items: controller.recommendedProductList,
+                  //       )
+                  //     : const CircularProgressIndicator(
+                  //         color: AppColors.primary,
+                  //       );
+                  return RecommendedFoodList(
+                    items: controller.recommendedProductList,
+                  );
+                }),
               ],
             ),
           );
