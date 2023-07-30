@@ -53,13 +53,14 @@ class SmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      maxLines: 1,
-      overflow: overflow,
+      // maxLines: 1,
+      // overflow: overflow,
       style: TextStyle(
           color: color,
           fontFamily: 'roboto',
           fontWeight: fontWeight,
-          fontSize: fontSize),
+          fontSize: fontSize,
+          height: height),
     );
   }
 }

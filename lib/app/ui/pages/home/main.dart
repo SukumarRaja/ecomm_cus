@@ -1,6 +1,8 @@
+import 'package:ecomm_cus/app/ui/themes/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/home.dart';
+import '../../../controllers/popular_product.dart';
 import '../../../utility/dimensions.dart';
 import '../../widgets/home/dot_indicator.dart';
 import '../../widgets/home/food_list.dart';
@@ -15,6 +17,7 @@ class HomeMain extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint(
         "Current height is ${MediaQuery.of(context).size.height.toString()}");
+    Get.find<PopularProductController>().getPopularProduct();
     return GetBuilder(
         init: HomeController(),
         initState: (_) {
@@ -28,20 +31,32 @@ class HomeMain extends StatelessWidget {
                 const LocationAndSearch(),
 
                 //slider
-                const SliderWidget(),
+                GetBuilder<PopularProductController>(builder: (controller) {
+                  return controller.isLoaded
+                      ? SliderWidget(
+                          items: controller.popularProductList,
+                        )
+                      : const CircularProgressIndicator(
+                          color: AppColors.primary,
+                        );
+                }),
 
                 //dot indicator
-                const DotIndicator(),
+                GetBuilder<PopularProductController>(builder: (controller) {
+                  return DotIndicator(
+                    length: controller.popularProductList.length,
+                  );
+                }),
 
                 SizedBox(
                   height: Dimensions.height30,
                 ),
 
-                //popular text
-                const PopularText(),
+                //Recommended text
+                const RecommendedText(),
 
-                //popular list
-                const PopularFoodList()
+                //Recommended list
+                const RecommendedFoodList()
               ],
             ),
           );

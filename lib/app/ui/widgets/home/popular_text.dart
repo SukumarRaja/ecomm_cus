@@ -3,8 +3,8 @@ import '../../../utility/dimensions.dart';
 import '../../themes/colors.dart';
 import '../common/text.dart';
 
-class PopularText extends StatelessWidget {
-  const PopularText({Key? key}) : super(key: key);
+class RecommendedText extends StatelessWidget {
+  const RecommendedText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class PopularText extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const BigText(text: "Popular"),
+          const BigText(text: "Recommended"),
           SizedBox(
             width: Dimensions.width10,
           ),

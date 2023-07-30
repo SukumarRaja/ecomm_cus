@@ -1,8 +1,10 @@
-import 'package:ecomm_cus/app/ui/themes/colors.dart';
-import 'package:ecomm_cus/app/ui/widgets/food/popular/icon.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../utility/dimensions.dart';
+import '../../themes/colors.dart';
+import '../../widgets/common/expandable_text.dart';
 import '../../widgets/common/text.dart';
+import '../../widgets/food/popular/icon.dart';
 import '../../widgets/icon_and_text.dart';
 
 class PopularFoodDetails extends StatelessWidget {
@@ -29,11 +31,19 @@ class PopularFoodDetails extends StatelessWidget {
             top: Dimensions.height45,
             left: Dimensions.width20,
             right: Dimensions.width20,
-            child: const Row(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                PopularPageIcon(icon: Icons.arrow_back_ios),
-                PopularPageIcon(icon: Icons.shopping_cart_outlined),
+                PopularPageIcon(
+                  icon: Icons.arrow_back_ios,
+                  onTap: () {
+                    Get.back();
+                  },
+                ),
+                PopularPageIcon(
+                  icon: Icons.shopping_cart_outlined,
+                  onTap: () {},
+                ),
               ],
             ),
           ),
@@ -116,6 +126,17 @@ class PopularFoodDetails extends StatelessWidget {
                     height: Dimensions.height20,
                   ),
                   const BigText(text: "Introduce"),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
+                  const Expanded(
+                    child: SingleChildScrollView(
+                      child: ExpandableText(
+                        text:
+                            "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),

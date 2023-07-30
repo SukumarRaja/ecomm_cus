@@ -4,7 +4,8 @@ import '../../../controllers/home.dart';
 import '../../themes/colors.dart';
 
 class DotIndicator extends StatelessWidget {
-  const DotIndicator({Key? key}) : super(key: key);
+  const DotIndicator({Key? key, required this.length}) : super(key: key);
+  final int length;
 
   @override
   Widget build(BuildContext context) {

@@ -1,13 +1,13 @@
-import 'package:ecomm_cus/app/ui/pages/food/popular_food_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utility/dimensions.dart';
+import '../../pages/food/recommended_food_details.dart';
 import '../../themes/colors.dart';
 import '../common/text.dart';
 import '../icon_and_text.dart';
 
-class PopularFoodList extends StatelessWidget {
-  const PopularFoodList({Key? key}) : super(key: key);
+class RecommendedFoodList extends StatelessWidget {
+  const RecommendedFoodList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class PopularFoodList extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.to(() => const PopularFoodDetails());
+                Get.to(() => const RecommendedFoodDetails());
               },
               child: Container(
                 margin: EdgeInsets.only(
