@@ -11,6 +11,7 @@ class PopularFoodDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       body: Stack(
         children: [
           Positioned(
@@ -54,60 +55,133 @@ class PopularFoodDetails extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const BigText(text: "Chinse Inside"),
-                  SizedBox(
-                    height: Dimensions.height10,
-                  ),
-                  Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Wrap(
-                        children: List.generate(5, (index) {
-                          return const Icon(
-                            Icons.star,
-                            color: AppColors.primary,
-                            size: 15,
-                          );
-                        }),
+                      BigText(
+                        text: "Chinse Inside",
+                        fontSize: Dimensions.font26,
                       ),
-                      const SizedBox(
-                        width: 10,
+                      SizedBox(
+                        height: Dimensions.height10,
                       ),
-                      const SmallText(text: "4.5"),
-                      const SizedBox(
-                        width: 10,
+                      Row(
+                        children: [
+                          Wrap(
+                            children: List.generate(5, (index) {
+                              return const Icon(
+                                Icons.star,
+                                color: AppColors.primary,
+                                size: 15,
+                              );
+                            }),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const SmallText(text: "4.5"),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const SmallText(text: "1287"),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          const SmallText(text: "Commands"),
+                        ],
                       ),
-                      const SmallText(text: "1287"),
-                      const SizedBox(
-                        width: 10,
+                      SizedBox(
+                        height: Dimensions.height20,
                       ),
-                      const SmallText(text: "Commands"),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconAndText(
+                              icon: Icons.circle_sharp,
+                              text: "Normal",
+                              iconColor: AppColors.icon1),
+                          IconAndText(
+                              icon: Icons.location_on,
+                              text: "1.7km",
+                              iconColor: AppColors.primary),
+                          IconAndText(
+                              icon: Icons.access_time_rounded,
+                              text: "32min",
+                              iconColor: AppColors.icon2),
+                        ],
+                      )
                     ],
                   ),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconAndText(
-                          icon: Icons.circle_sharp,
-                          text: "Normal",
-                          iconColor: AppColors.icon1),
-                      IconAndText(
-                          icon: Icons.location_on,
-                          text: "1.7km",
-                          iconColor: AppColors.primary),
-                      IconAndText(
-                          icon: Icons.access_time_rounded,
-                          text: "32min",
-                          iconColor: AppColors.icon2),
-                    ],
-                  )
+                  const BigText(text: "Introduce"),
                 ],
               ),
             ),
           )
         ],
+      ),
+      bottomNavigationBar: Container(
+        height: Dimensions.bottomHeight,
+        padding: EdgeInsets.only(
+            top: Dimensions.height30,
+            bottom: Dimensions.height30,
+            left: Dimensions.width20,
+            right: Dimensions.width20),
+        decoration: BoxDecoration(
+            color: AppColors.buttonBackground,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(Dimensions.radius20 * 2),
+                topRight: Radius.circular(Dimensions.radius20 * 2))),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              padding: EdgeInsets.only(
+                  top: Dimensions.height20,
+                  bottom: Dimensions.height20,
+                  right: Dimensions.width20,
+                  left: Dimensions.width20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                  color: AppColors.white),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.remove,
+                    color: AppColors.sign,
+                  ),
+                  SizedBox(
+                    width: Dimensions.width10 / 2,
+                  ),
+                  const BigText(text: "0"),
+                  SizedBox(
+                    width: Dimensions.width10 / 2,
+                  ),
+                  const Icon(
+                    Icons.add,
+                    color: AppColors.sign,
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                  top: Dimensions.height20,
+                  bottom: Dimensions.height20,
+                  right: Dimensions.width20,
+                  left: Dimensions.width20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Dimensions.radius20),
+                  color: AppColors.primary),
+              child: const BigText(
+                text: "\u20B90 | Add to cart",
+                color: AppColors.white,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
