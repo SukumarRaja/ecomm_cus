@@ -13,7 +13,8 @@ class AppRoutes {
   static String getPopularFood({required int pageID}) =>
       "$popularFood?pageId=$pageID";
 
-  static String getRecommendedFood() => recommendedFood;
+  static String getRecommendedFood({required int pageId}) =>
+      "$recommendedFood?pageId=$pageId";
 
   static List<GetPage> routes = [
     GetPage(
@@ -32,7 +33,8 @@ class AppRoutes {
     GetPage(
         name: recommendedFood,
         page: () {
-          return RecommendedFoodDetails();
+          var pageId = Get.parameters['pageId'];
+          return RecommendedFoodDetails(pageId: int.parse(pageId!));
         }),
   ];
 }

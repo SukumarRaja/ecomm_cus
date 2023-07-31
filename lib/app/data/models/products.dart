@@ -2,7 +2,7 @@ class Product {
   dynamic totalSize;
   dynamic typeId;
   dynamic offset;
-  List<ProductElement>? products;
+  List<ProductModel>? products;
 
   Product({
     this.totalSize,
@@ -15,8 +15,8 @@ class Product {
         totalSize: json["total_size"],
         typeId: json["type_id"],
         offset: json["offset"],
-        products: List<ProductElement>.from(
-            json["products"].map((x) => ProductElement.fromJson(x))),
+        products: List<ProductModel>.from(
+            json["products"].map((x) => ProductModel.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -27,7 +27,7 @@ class Product {
       };
 }
 
-class ProductElement {
+class ProductModel {
   dynamic id;
   dynamic name;
   dynamic description;
@@ -39,7 +39,7 @@ class ProductElement {
   dynamic updatedAt;
   dynamic typeId;
 
-  ProductElement({
+  ProductModel({
     this.id,
     this.name,
     this.description,
@@ -52,7 +52,7 @@ class ProductElement {
     this.typeId,
   });
 
-  factory ProductElement.fromJson(Map<String, dynamic> json) => ProductElement(
+  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         id: json["id"],
         name: json["name"],
         description: json["description"],

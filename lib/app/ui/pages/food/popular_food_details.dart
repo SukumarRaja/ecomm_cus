@@ -1,3 +1,4 @@
+import 'package:ecomm_cus/app/controllers/cart.dart';
 import 'package:ecomm_cus/app/controllers/popular_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,10 +16,13 @@ class PopularFoodDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var product =
-        Get.find<PopularProductController>().popularProductList[pageId];
-    print("page id ${pageId.toString()}");
-    print("product name is ${product['name']}");
+    var product;
+    // var product =
+    //     Get.find<PopularProductController>().popularProductList[pageId];
+    // print("page id ${pageId.toString()}");
+    // print("product name is ${product['name']}");
+    Get.find<PopularProductController>()
+        .initProduct(product: product, cart: Get.find<CartController>());
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Stack(
@@ -150,66 +154,85 @@ class PopularFoodDetails extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: Container(
-        height: Dimensions.bottomHeight,
-        padding: EdgeInsets.only(
-            top: Dimensions.height30,
-            bottom: Dimensions.height30,
-            left: Dimensions.width20,
-            right: Dimensions.width20),
-        decoration: BoxDecoration(
-            color: AppColors.buttonBackground,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(Dimensions.radius20 * 2),
-                topRight: Radius.circular(Dimensions.radius20 * 2))),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: EdgeInsets.only(
-                  top: Dimensions.height20,
-                  bottom: Dimensions.height20,
-                  right: Dimensions.width20,
-                  left: Dimensions.width20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: AppColors.white),
-              child: Row(
-                children: [
-                  const Icon(
-                    Icons.remove,
-                    color: AppColors.sign,
+      bottomNavigationBar: GetBuilder<PopularProductController>(
+        builder: (controller) {
+          return Container(
+            height: Dimensions.bottomHeight,
+            padding: EdgeInsets.only(
+                top: Dimensions.height30,
+                bottom: Dimensions.height30,
+                left: Dimensions.width20,
+                right: Dimensions.width20),
+            decoration: BoxDecoration(
+                color: AppColors.buttonBackground,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(Dimensions.radius20 * 2),
+                    topRight: Radius.circular(Dimensions.radius20 * 2))),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  padding: EdgeInsets.only(
+                      top: Dimensions.height20,
+                      bottom: Dimensions.height20,
+                      right: Dimensions.width20,
+                      left: Dimensions.width20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: AppColors.white),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          controller.setQuantity(false);
+                        },
+                        child: const Icon(
+                          Icons.remove,
+                          color: AppColors.sign,
+                        ),
+                      ),
+                      SizedBox(
+                        width: Dimensions.width10 / 2,
+                      ),
+                      BigText(text: "${controller.inCartItems}"),
+                      SizedBox(
+                        width: Dimensions.width10 / 2,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          controller.setQuantity(true);
+                        },
+                        child: const Icon(
+                          Icons.add,
+                          color: AppColors.sign,
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    width: Dimensions.width10 / 2,
+                ),
+                Container(
+                  padding: EdgeInsets.only(
+                      top: Dimensions.height20,
+                      bottom: Dimensions.height20,
+                      right: Dimensions.width20,
+                      left: Dimensions.width20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      color: AppColors.primary),
+                  child: GestureDetector(
+                    onTap: () {
+                      controller.addItem(product: product);
+                    },
+                    child: const BigText(
+                      text: "\u20B90 | Add to cart",
+                      color: AppColors.white,
+                    ),
                   ),
-                  const BigText(text: "0"),
-                  SizedBox(
-                    width: Dimensions.width10 / 2,
-                  ),
-                  const Icon(
-                    Icons.add,
-                    color: AppColors.sign,
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
-            Container(
-              padding: EdgeInsets.only(
-                  top: Dimensions.height20,
-                  bottom: Dimensions.height20,
-                  right: Dimensions.width20,
-                  left: Dimensions.width20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  color: AppColors.primary),
-              child: const BigText(
-                text: "\u20B90 | Add to cart",
-                color: AppColors.white,
-              ),
-            )
-          ],
-        ),
+          );
+        },
       ),
     );
   }

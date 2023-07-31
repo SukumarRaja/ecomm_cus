@@ -20,7 +20,7 @@ class RecommendedFoodList extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.toNamed(AppRoutes.getRecommendedFood());
+                Get.toNamed(AppRoutes.getRecommendedFood(pageId:index));
               },
               child: Container(
                 margin: EdgeInsets.only(

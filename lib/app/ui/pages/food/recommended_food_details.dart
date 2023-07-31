@@ -1,3 +1,4 @@
+import 'package:ecomm_cus/app/controllers/recommended_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../utility/dimensions.dart';
@@ -7,10 +8,13 @@ import '../../widgets/common/text.dart';
 import '../../widgets/food/popular/icon.dart';
 
 class RecommendedFoodDetails extends StatelessWidget {
-  const RecommendedFoodDetails({super.key});
+  const RecommendedFoodDetails({super.key, required this.pageId});
+
+  final int pageId;
 
   @override
   Widget build(BuildContext context) {
+    // var product  = Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: AppColors.white,
       body: CustomScrollView(
