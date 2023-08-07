@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:ecomm_cus/app/controllers/cart.dart';
 import 'package:ecomm_cus/app/ui/themes/colors.dart';
 import 'package:get/get.dart';
+import '../data/models/cart.dart';
 import '../data/models/products.dart';
 import '../data/repository/popular_product.dart';
 
@@ -59,6 +60,10 @@ class PopularProductController extends GetxController {
     if ((_inCartItems + quantity) < 0) {
       Get.snackbar("Item", "You can't reduce more !",
           backgroundColor: AppColors.primary, colorText: AppColors.white);
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar("Item", "You can't add more !",
@@ -93,5 +98,14 @@ class PopularProductController extends GetxController {
     //     Get.snackbar("Item", "You should at least add an item in the cart",
     //         backgroundColor: AppColors.primary, colorText: AppColors.white);
     //   }
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }

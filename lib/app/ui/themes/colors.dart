@@ -12,4 +12,5 @@ class AppColors {
   static const title = Color(0xFF5c524f);
   static const para = Color(0xFF8f837f);
   static const yellow = Color(0xFFffd379);
+  static const redAccent = Color(0xFFd8392b);
 }
