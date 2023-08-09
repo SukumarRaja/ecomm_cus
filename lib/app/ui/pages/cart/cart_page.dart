@@ -63,9 +63,11 @@ class CartPage extends StatelessWidget {
                   context: context,
                   removeTop: true,
                   child: GetBuilder<CartController>(builder: (controller) {
+                    // var cartList = controller.getItems;
+                    dynamic cartList;
                     return ListView.builder(
                         itemCount: 10,
-                        // itemCount: controller.getItems.length,
+                        // itemCount: cartList.length,
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return Container(
@@ -144,6 +146,7 @@ class CartPage extends StatelessWidget {
                                                     width:
                                                         Dimensions.width10 / 2,
                                                   ),
+                                                  // BigText(text: "${cartList[index].quantity}"),
                                                   BigText(text: "0"),
                                                   SizedBox(
                                                     width:

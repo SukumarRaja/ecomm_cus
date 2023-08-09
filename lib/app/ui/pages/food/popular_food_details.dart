@@ -2,6 +2,7 @@ import 'package:ecomm_cus/app/controllers/cart.dart';
 import 'package:ecomm_cus/app/controllers/popular_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../routes/routes.dart';
 import '../../../utility/dimensions.dart';
 import '../../themes/colors.dart';
 import '../../widgets/common/expandable_text.dart';
@@ -64,7 +65,9 @@ class PopularFoodDetails extends StatelessWidget {
                         child: PopularPageIcon(
                           icon: Icons.circle,
                           onTap: () {
-                            Get.to(() => CartPage());
+                            if (controller.totalItems >= 1) {
+                              Get.toNamed(AppRoutes.getCartPage());
+                            }
                           },
                           size: 20,
                           iconColor: Colors.transparent,
